@@ -61,7 +61,7 @@ function runUserPromptSubmit(payload: HookPayload): HookResponse {
     `Codex Coach pre-flight: this looks like ${classification.label.toLowerCase()}, ${classification.complexity} complexity.`,
     `Estimated burn is ${estimate.optimisticCredits.toLocaleString()}-${estimate.heavyIterationCredits.toLocaleString()} credits, expected ${estimate.expectedCredits.toLocaleString()} (${estimate.allocationImpactPercent}% of the weekly allocation).`,
     `Recommended model: ${estimate.recommendedModelDisplayName}.`,
-    `Efficiency move: ${classification.workflowNudge}`,
+    `Awareness item to commit before execution: ${classification.workflowNudge}`,
   ].join(" ");
 
   return {

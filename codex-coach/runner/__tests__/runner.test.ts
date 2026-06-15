@@ -49,7 +49,10 @@ test("agent development uses standard with high tool use", () => {
   assert.equal(response.classification?.projectType, "agent-development");
   assert.equal(response.classification?.modelClass, "standard");
   assert.equal(response.classification?.toolUse, "high");
-  assert.match(response.additionalContext ?? "", /vertical slice/);
+  assert.match(
+    response.additionalContext ?? "",
+    /Awareness item to commit before execution: .*vertical slice/
+  );
 });
 
 test("documentation cleanup routes to cheap", () => {
