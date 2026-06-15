@@ -60,7 +60,7 @@ function runUserPromptSubmit(payload: HookPayload): HookResponse {
   const context = [
     `Codex Coach pre-flight: this looks like ${classification.label.toLowerCase()}, ${classification.complexity} complexity.`,
     `Estimated burn is ${estimate.optimisticCredits.toLocaleString()}-${estimate.heavyIterationCredits.toLocaleString()} credits, expected ${estimate.expectedCredits.toLocaleString()} (${estimate.allocationImpactPercent}% of the weekly allocation).`,
-    `Recommended model class: ${estimate.recommendedModelClass}.`,
+    `Recommended model: ${estimate.recommendedModelDisplayName}.`,
     `Efficiency move: ${classification.workflowNudge}`,
   ].join(" ");
 
@@ -81,9 +81,12 @@ function runSessionStart(payload: HookPayload): HookResponse {
   const routing = coachPolicy.routingRules
     .map((rule) => `${rule.task}:${rule.defaultModelClass}`)
     .join(", ");
+  const modelGuidance = Object.values(coachPolicy.modelClasses)
+    .map((modelClass) => modelClass.displayName)
+    .join(", ");
 
   return {
-    additionalContext: `Codex Coach context: weekly allocation is ${coachPolicy.weeklyAllocationCredits.toLocaleString()} credits. Default routing is ${routing}. Use premium only for architecture, hard debugging, ambiguous reasoning, or orchestration blockers.`,
+    additionalContext: `Codex Coach context: weekly allocation is ${coachPolicy.weeklyAllocationCredits.toLocaleString()} credits. Default routing is ${routing}. Current model map is ${modelGuidance}. Use the premium path only for architecture, hard debugging, ambiguous reasoning, or orchestration blockers.`,
     telemetryEvent: makeTelemetryEvent(payload),
     shouldBlock: false,
   };

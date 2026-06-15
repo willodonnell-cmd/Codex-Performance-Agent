@@ -25,15 +25,24 @@
   "modelClasses": {
     "cheap": {
       "label": "Cheap",
-      "defaultUse": ["summarization", "extraction", "formatting", "documentation cleanup"]
+      "defaultUse": ["summarization", "extraction", "formatting", "documentation cleanup"],
+      "recommendedModel": "gpt-5.4-mini",
+      "recommendedReasoning": "low",
+      "displayName": "GPT-5.4-mini (Low)"
     },
     "standard": {
       "label": "Standard",
-      "defaultUse": ["planning", "implementation", "ordinary debugging", "review"]
+      "defaultUse": ["planning", "implementation", "ordinary debugging", "review"],
+      "recommendedModel": "gpt-5.5",
+      "recommendedReasoning": "low",
+      "displayName": "GPT-5.5 (Low)"
     },
     "premium": {
       "label": "Premium",
-      "defaultUse": ["architecture", "hard debugging", "ambiguous reasoning", "multi-step orchestration"]
+      "defaultUse": ["architecture", "hard debugging", "ambiguous reasoning", "multi-step orchestration"],
+      "recommendedModel": "gpt-5.5",
+      "recommendedReasoning": "high",
+      "displayName": "GPT-5.5 (High)"
     }
   },
   "routingRules": [

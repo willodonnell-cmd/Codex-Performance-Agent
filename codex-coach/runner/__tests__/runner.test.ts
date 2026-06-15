@@ -22,7 +22,7 @@ test("summarization routes to cheap with a low estimate", () => {
   assert.equal(response.classification?.modelClass, "cheap");
   assert.ok(response.estimate);
   assert.ok(response.estimate.expectedCredits < 500);
-  assert.match(response.additionalContext ?? "", /Recommended model class: cheap/);
+  assert.match(response.additionalContext ?? "", /Recommended model: GPT-5\.4-mini \(Low\)/);
 });
 
 test("coding routes to standard", () => {
@@ -40,7 +40,7 @@ test("hard debugging can escalate to premium", () => {
   assert.equal(response.classification?.projectType, "debugging");
   assert.equal(response.classification?.modelClass, "premium");
   assert.equal(response.classification?.reasoning, "high");
-  assert.match(response.additionalContext ?? "", /premium/);
+  assert.match(response.additionalContext ?? "", /Recommended model: GPT-5\.5 \(High\)/);
 });
 
 test("agent development uses standard with high tool use", () => {
@@ -69,7 +69,7 @@ test("business memo revision routes to cheap documentation cleanup", () => {
 
   assert.equal(response.classification?.label, "Documentation cleanup");
   assert.equal(response.classification?.modelClass, "cheap");
-  assert.match(response.additionalContext ?? "", /Recommended model class: cheap/);
+  assert.match(response.additionalContext ?? "", /Recommended model: GPT-5\.4-mini \(Low\)/);
 });
 
 test("unknown work defaults to coding standard", () => {
@@ -98,6 +98,7 @@ test("session start returns policy context", () => {
 
   assert.equal(response.shouldBlock, false);
   assert.match(response.additionalContext ?? "", /weekly allocation/i);
+  assert.match(response.additionalContext ?? "", /GPT-5\.5 \(Low\)/i);
   assert.ok(response.telemetryEvent);
 });
 

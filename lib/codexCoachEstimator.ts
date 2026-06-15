@@ -26,6 +26,9 @@ export type EstimateResult = {
   allocationImpactPercent: number;
   remainingAfterExpected: number;
   recommendedModelClass: ModelClass;
+  recommendedModel: string;
+  recommendedReasoning: string;
+  recommendedModelDisplayName: string;
   budgetMode: string;
 };
 
@@ -64,6 +67,12 @@ export function estimateCredits(input: EstimateInput): EstimateResult {
     allocationImpactPercent: impact,
     remainingAfterExpected: Math.max(allocation - expected, 0),
     recommendedModelClass: input.modelClass,
+    recommendedModel:
+      modelPolicy.modelClasses[input.modelClass].recommendedModel,
+    recommendedReasoning:
+      modelPolicy.modelClasses[input.modelClass].recommendedReasoning,
+    recommendedModelDisplayName:
+      modelPolicy.modelClasses[input.modelClass].displayName,
     budgetMode,
   };
 }
