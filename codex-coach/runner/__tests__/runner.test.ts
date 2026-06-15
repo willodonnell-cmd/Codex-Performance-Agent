@@ -60,6 +60,18 @@ test("documentation cleanup routes to cheap", () => {
   assert.equal(response.classification?.reasoning, "low");
 });
 
+test("business memo revision routes to cheap documentation cleanup", () => {
+  const response = runHook({
+    event: "UserPromptSubmit",
+    prompt:
+      "Help me revise the 2027 business plan memo, clean up the structure, and identify the next edits before we send it for review.",
+  });
+
+  assert.equal(response.classification?.label, "Documentation cleanup");
+  assert.equal(response.classification?.modelClass, "cheap");
+  assert.match(response.additionalContext ?? "", /Recommended model class: cheap/);
+});
+
 test("unknown work defaults to coding standard", () => {
   const response = runHook({
     event: "UserPromptSubmit",

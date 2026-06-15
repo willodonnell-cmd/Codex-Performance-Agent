@@ -36,7 +36,13 @@
         "readme",
         "formatting",
         "copy edit",
-        "rewrite docs"
+        "rewrite docs",
+        "clean up",
+        "revise",
+        "memo",
+        "draft",
+        "edits",
+        "review comments"
       ],
       "classification": {
         "projectType": "summarization",
