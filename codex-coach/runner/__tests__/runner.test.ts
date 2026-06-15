@@ -96,6 +96,17 @@ test("architecture language escalates the model class", () => {
   assert.equal(response.classification?.reasoning, "high");
 });
 
+test("plan-like work requires review before execution", () => {
+  const response = runHook({
+    event: "UserPromptSubmit",
+    prompt:
+      "Create a plan for the full workflow across multiple tools, then help me choose the smallest executable slice.",
+  });
+
+  assert.match(response.additionalContext ?? "", /Plan review required/);
+  assert.match(response.additionalContext ?? "", /ask the user to commit/);
+});
+
 test("session start returns policy context", () => {
   const response = runHook({ event: "SessionStart" });
 

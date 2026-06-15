@@ -9,3 +9,8 @@ Codex Coach pre-flight: this appears to be {projectType}, {complexity} complexit
 ```
 
 Skip output for tiny one-off requests where the coaching note would cost more attention than it saves.
+
+For plan-like prompts, Coach should also require a post-plan review before
+execution. After the plan is drafted, explicitly call out the Coach
+recommendation, confirm the model and credit impact, and ask the user to commit
+to the material scope choice before implementation begins.

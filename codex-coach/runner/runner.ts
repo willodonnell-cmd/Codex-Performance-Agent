@@ -47,6 +47,18 @@ function makeTelemetryEvent(
   };
 }
 
+function requiresPlanReview(prompt: string, classification: PromptClassification) {
+  const normalized = prompt.toLowerCase();
+  return (
+    classification.projectType === "workflow-design" ||
+    classification.projectType === "agent-development" ||
+    classification.complexity === "high" ||
+    /\b(plan|planning|workflow|architecture|architect|orchestration|multi-step|cross-system)\b/.test(
+      normalized
+    )
+  );
+}
+
 function runUserPromptSubmit(payload: HookPayload): HookResponse {
   const prompt = payload.prompt?.trim();
   if (!prompt) {
@@ -57,12 +69,20 @@ function runUserPromptSubmit(payload: HookPayload): HookResponse {
   }
 
   const { classification, estimate } = classifyPrompt(prompt);
-  const context = [
+  const contextParts = [
     `Codex Coach pre-flight: this looks like ${classification.label.toLowerCase()}, ${classification.complexity} complexity.`,
     `Estimated burn is ${estimate.optimisticCredits.toLocaleString()}-${estimate.heavyIterationCredits.toLocaleString()} credits, expected ${estimate.expectedCredits.toLocaleString()} (${estimate.allocationImpactPercent}% of the weekly allocation).`,
     `Recommended model: ${estimate.recommendedModelDisplayName}.`,
     `Awareness item to commit before execution: ${classification.workflowNudge}`,
-  ].join(" ");
+  ];
+
+  if (requiresPlanReview(prompt, classification)) {
+    contextParts.push(
+      "Plan review required: after drafting the plan, explicitly call out the Coach recommendation, confirm the model/credit impact, and ask the user to commit to the material scope choice before execution."
+    );
+  }
+
+  const context = contextParts.join(" ");
 
   return {
     additionalContext: context,
