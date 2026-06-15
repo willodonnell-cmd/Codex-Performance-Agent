@@ -1,0 +1,8 @@
+{
+  "event": "UserPromptSubmit",
+  "prompt": "Build the Codex Coach hook runner sidecar with a UserPromptSubmit hook, classifier, estimator call, fixtures, and local telemetry.",
+  "session": {
+    "id": "sess_agent",
+    "threadId": "thread_agent"
+  }
+}

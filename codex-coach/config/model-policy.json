@@ -1,0 +1,66 @@
+{
+  "weeklyAllocationCredits": 2650,
+  "budgetPressure": [
+    {
+      "maxUsedPercent": 50,
+      "mode": "productivity",
+      "guidance": "Optimize for output quality and momentum."
+    },
+    {
+      "maxUsedPercent": 75,
+      "mode": "balanced",
+      "guidance": "Use standard models by default and move cleanup to cheaper models."
+    },
+    {
+      "maxUsedPercent": 90,
+      "mode": "conserve",
+      "guidance": "Steer strongly toward the cheapest adequate model."
+    },
+    {
+      "maxUsedPercent": 100,
+      "mode": "finish-only",
+      "guidance": "Finish active workstreams before opening new exploratory threads."
+    }
+  ],
+  "modelClasses": {
+    "cheap": {
+      "label": "Cheap",
+      "defaultUse": ["summarization", "extraction", "formatting", "documentation cleanup"]
+    },
+    "standard": {
+      "label": "Standard",
+      "defaultUse": ["planning", "implementation", "ordinary debugging", "review"]
+    },
+    "premium": {
+      "label": "Premium",
+      "defaultUse": ["architecture", "hard debugging", "ambiguous reasoning", "multi-step orchestration"]
+    }
+  },
+  "routingRules": [
+    {
+      "task": "research",
+      "defaultModelClass": "standard",
+      "escalateWhen": "Source conflict, high-stakes synthesis, or ambiguous decision framing."
+    },
+    {
+      "task": "coding",
+      "defaultModelClass": "standard",
+      "escalateWhen": "Cross-system architecture, repeated failing tests, or unclear runtime behavior."
+    },
+    {
+      "task": "debugging",
+      "defaultModelClass": "standard",
+      "escalateWhen": "Three repeated failed attempts or a production-impacting blocker."
+    },
+    {
+      "task": "summarization",
+      "defaultModelClass": "cheap",
+      "escalateWhen": "Material business risk or dense technical ambiguity."
+    },
+    {
+      "task": "agent development",
+      "defaultModelClass": "standard",
+      "escalateWhen": "Tool orchestration, approvals, or state management becomes unclear."
+    }
+  ]
+}

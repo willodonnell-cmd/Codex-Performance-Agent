@@ -1,0 +1,8 @@
+{
+  "event": "UserPromptSubmit",
+  "prompt": "Implement a settings page in the existing app with validation, server save, and focused tests.",
+  "session": {
+    "id": "sess_coding",
+    "threadId": "thread_coding"
+  }
+}

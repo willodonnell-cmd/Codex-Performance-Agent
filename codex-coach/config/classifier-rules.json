@@ -1,0 +1,172 @@
+{
+  "default": {
+    "projectType": "coding",
+    "label": "Coding",
+    "complexity": "medium",
+    "contextGrowth": "medium",
+    "toolUse": "medium",
+    "modelClass": "standard",
+    "reasoning": "standard",
+    "expectedIterations": 2,
+    "workflowNudge": "Start with the smallest testable slice, then expand only after the core path works."
+  },
+  "rules": [
+    {
+      "id": "summarization",
+      "priority": 10,
+      "keywords": ["summarize", "summary", "extract", "brief this"],
+      "classification": {
+        "projectType": "summarization",
+        "label": "Summarization",
+        "complexity": "low",
+        "contextGrowth": "low",
+        "toolUse": "low",
+        "modelClass": "cheap",
+        "reasoning": "low",
+        "expectedIterations": 1,
+        "workflowNudge": "Use the cheapest adequate model and avoid loading unrelated source material."
+      }
+    },
+    {
+      "id": "documentation-cleanup",
+      "priority": 20,
+      "keywords": [
+        "documentation cleanup",
+        "clean up docs",
+        "readme",
+        "formatting",
+        "copy edit",
+        "rewrite docs"
+      ],
+      "classification": {
+        "projectType": "summarization",
+        "label": "Documentation cleanup",
+        "complexity": "low",
+        "contextGrowth": "low",
+        "toolUse": "low",
+        "modelClass": "cheap",
+        "reasoning": "low",
+        "expectedIterations": 1,
+        "workflowNudge": "Keep this on a cheap model unless the docs encode product or legal risk."
+      }
+    },
+    {
+      "id": "debugging",
+      "priority": 30,
+      "keywords": ["debug", "failing", "failure", "broken", "error", "bug"],
+      "classification": {
+        "projectType": "debugging",
+        "label": "Debugging",
+        "complexity": "medium",
+        "contextGrowth": "medium",
+        "toolUse": "high",
+        "modelClass": "standard",
+        "reasoning": "standard",
+        "expectedIterations": 3,
+        "workflowNudge": "Collect one failing reproduction and one focused log slice before broad exploration."
+      }
+    },
+    {
+      "id": "hard-debugging",
+      "priority": 90,
+      "keywordGroups": [
+        ["production", "incident", "500", "race condition"],
+        ["debug", "failing", "failure", "broken", "error"]
+      ],
+      "classification": {
+        "projectType": "debugging",
+        "label": "Hard debugging",
+        "complexity": "high",
+        "contextGrowth": "medium",
+        "toolUse": "high",
+        "modelClass": "premium",
+        "reasoning": "high",
+        "expectedIterations": 4,
+        "workflowNudge": "Collect one failing reproduction and one focused log slice before broad exploration."
+      }
+    },
+    {
+      "id": "workflow-design",
+      "priority": 35,
+      "keywords": ["workflow", "automation"],
+      "classification": {
+        "projectType": "workflow-design",
+        "label": "Workflow design",
+        "complexity": "medium",
+        "contextGrowth": "medium",
+        "toolUse": "high",
+        "modelClass": "standard",
+        "reasoning": "standard",
+        "expectedIterations": 3,
+        "workflowNudge": "Build one executable vertical slice before implementing every integration surface."
+      }
+    },
+    {
+      "id": "agent-development",
+      "priority": 40,
+      "keywords": ["agent", "hook", "sidecar", "runner"],
+      "classification": {
+        "projectType": "agent-development",
+        "label": "Agent development",
+        "complexity": "medium",
+        "contextGrowth": "medium",
+        "toolUse": "high",
+        "modelClass": "standard",
+        "reasoning": "standard",
+        "expectedIterations": 3,
+        "workflowNudge": "Build one executable vertical slice before implementing every integration surface."
+      }
+    },
+    {
+      "id": "architecture-escalation",
+      "priority": 100,
+      "keywords": [
+        "architect",
+        "architecture",
+        "orchestration",
+        "multi-step",
+        "cross-system"
+      ],
+      "classification": {
+        "complexity": "high",
+        "contextGrowth": "high",
+        "modelClass": "premium",
+        "reasoning": "high",
+        "expectedIterations": 4,
+        "workflowNudge": "Use premium only for the architecture decision, then move implementation back to standard."
+      }
+    },
+    {
+      "id": "research",
+      "priority": 25,
+      "keywords": ["research", "compare", "market", "diligence", "sources"],
+      "classification": {
+        "projectType": "research",
+        "label": "Research",
+        "complexity": "medium",
+        "contextGrowth": "high",
+        "toolUse": "medium",
+        "modelClass": "standard",
+        "reasoning": "standard",
+        "expectedIterations": 2,
+        "workflowNudge": "Set source boundaries up front and avoid expanding the corpus until gaps are clear."
+      }
+    },
+    {
+      "id": "high-stakes-research",
+      "priority": 45,
+      "keywords": ["diligence", "high-stakes", "sources"],
+      "classification": {
+        "projectType": "research",
+        "label": "Research",
+        "complexity": "high",
+        "contextGrowth": "high",
+        "toolUse": "medium",
+        "modelClass": "standard",
+        "reasoning": "standard",
+        "expectedIterations": 2,
+        "workflowNudge": "Set source boundaries up front and avoid expanding the corpus until gaps are clear."
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "projectTypeBaseCredits": {
+    "research": 360,
+    "coding": 620,
+    "debugging": 520,
+    "agent-development": 760,
+    "refactoring": 680,
+    "summarization": 220,
+    "workflow-design": 460
+  },
+  "multipliers": {
+    "complexity": {
+      "low": 0.75,
+      "medium": 1,
+      "high": 1.45
+    },
+    "contextGrowth": {
+      "low": 0.85,
+      "medium": 1,
+      "high": 1.25
+    },
+    "toolUse": {
+      "low": 0.9,
+      "medium": 1,
+      "high": 1.2
+    },
+    "modelClass": {
+      "cheap": 0.65,
+      "standard": 1,
+      "premium": 1.65
+    },
+    "reasoning": {
+      "low": 0.85,
+      "standard": 1,
+      "high": 1.35
+    }
+  },
+  "calibrationExamples": [
+    {
+      "label": "Repository refactor",
+      "sampleSize": 42,
+      "expectedCredits": 950,
+      "actualCredits": 1070,
+      "confidence": "Moderate"
+    },
+    {
+      "label": "Inbox summarization agent",
+      "sampleSize": 31,
+      "expectedCredits": 1200,
+      "actualCredits": 1130,
+      "confidence": "High"
+    },
+    {
+      "label": "Strategy research brief",
+      "sampleSize": 27,
+      "expectedCredits": 640,
+      "actualCredits": 710,
+      "confidence": "Moderate"
+    }
+  ]
+}

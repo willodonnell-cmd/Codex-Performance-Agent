@@ -1,0 +1,8 @@
+{
+  "event": "UserPromptSubmit",
+  "prompt": "Summarize this meeting transcript into decisions, risks, and follow-up items.",
+  "session": {
+    "id": "sess_summary",
+    "threadId": "thread_summary"
+  }
+}

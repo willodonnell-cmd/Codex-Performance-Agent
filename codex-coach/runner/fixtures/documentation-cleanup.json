@@ -1,0 +1,8 @@
+{
+  "event": "UserPromptSubmit",
+  "prompt": "Clean up docs and README formatting for the prototype without changing product behavior.",
+  "session": {
+    "id": "sess_docs",
+    "threadId": "thread_docs"
+  }
+}
