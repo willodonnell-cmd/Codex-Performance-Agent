@@ -58,12 +58,19 @@ function toRunnerPayload(input, eventArg) {
 }
 
 function toCodexOutput(event, runnerResponse) {
+  const additionalContext = runnerResponse.additionalContext ?? "";
+  const visibleSystemMessage =
+    event === "UserPromptSubmit" && additionalContext
+      ? `Codex Coach: ${additionalContext}`
+      : undefined;
+
   return {
     continue: true,
-    suppressOutput: true,
+    suppressOutput: !visibleSystemMessage,
+    systemMessage: visibleSystemMessage,
     hookSpecificOutput: {
       hookEventName: event,
-      additionalContext: runnerResponse.additionalContext ?? "",
+      additionalContext,
     },
   };
 }
